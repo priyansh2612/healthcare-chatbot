@@ -1,0 +1,448 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  :root {
+    --background: 210 50% 95%;
+    --foreground: 210 50% 10%;
+    
+    --muted: 210 30% 85%;
+    --muted-foreground: 210 30% 30%;
+    
+    --popover: 210 50% 95%;
+    --popover-foreground: 210 50% 10%;
+    
+    --border: 210 30% 75%;
+    --input: 210 30% 85%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 210 50% 10%;
+    
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 210 30% 85%;
+    --secondary-foreground: 210 50% 10%;
+    
+    --accent: 210 30% 85%;
+    --accent-foreground: 210 50% 10%;
+    
+    --destructive: 0 100% 40%;
+    --destructive-foreground: 0 0% 95%;
+    
+    --ring: 210 40% 50%;
+    
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+    
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    
+    --border: 217 33% 25%;
+    --input: 217 33% 17%;
+    
+    --card: 222 47% 15%;
+    --card-foreground: 210 40% 98%;
+    
+    --primary: 210 40% 98%;
+    --primary-foreground: 222 47% 11%;
+    
+    --secondary: 217 24% 23%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --ring: 216 34% 17%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .sidebar {
+    @apply w-64 bg-background/90 border-r border-border transition-all duration-300 ease-in-out;
+  }
+
+  .sidebar-title {
+    @apply text-2xl font-bold text-primary p-4 transition-colors duration-200;
+  }
+
+  .sidebar-subtitle {
+    @apply text-sm text-muted-foreground px-4 pb-2 transition-colors duration-200;
+  }
+
+  .sidebar-section {
+    @apply text-xs font-semibold text-muted-foreground uppercase px-4 py-2 transition-colors duration-200;
+  }
+
+  .sidebar-item {
+    @apply flex items-center space-x-2 py-2 px-4 text-sm text-foreground rounded-md transition-all duration-200 ease-in-out;
+  }
+
+  .sidebar-item:hover {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  .sidebar-item.active {
+    @apply bg-primary/10 text-primary font-medium;
+  }
+
+  .main-content {
+    @apply flex-1 bg-background overflow-auto transition-all duration-300 ease-in-out;
+  }
+
+  .chat-header {
+    @apply bg-background border-b border-border p-4 flex justify-between items-center sticky top-0 z-10 transition-all duration-300 ease-in-out;
+  }
+
+  .chat-area {
+    @apply p-6 space-y-6;
+  }
+
+  .chat-message {
+    @apply max-w-[80%] p-4 rounded-lg shadow-sm transition-all duration-300 ease-in-out;
+  }
+
+  .chat-message-user {
+    @apply bg-primary text-primary-foreground ml-auto;
+  }
+
+  .chat-message-bot {
+    @apply bg-secondary text-secondary-foreground;
+  }
+
+  .chat-input {
+    @apply bg-background border-t border-border p-4 sticky bottom-0 transition-all duration-300 ease-in-out;
+  }
+
+  .chat-input-field {
+    @apply w-full p-3 rounded-md bg-muted text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200 ease-in-out;
+  }
+
+  .btn {
+    @apply px-4 py-2 rounded-md transition-all duration-200 ease-in-out font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 active:bg-secondary/80;
+  }
+
+  .btn-outline {
+    @apply border border-input bg-background hover:bg-accent hover:text-accent-foreground active:bg-accent/80;
+  }
+
+  .btn-destructive {
+    @apply bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80;
+  }
+
+  .welcome-container {
+    @apply text-center max-w-2xl mx-auto p-6 rounded-lg bg-card text-card-foreground shadow-lg transition-all duration-300 ease-in-out;
+  }
+
+  .welcome-title {
+    @apply text-3xl font-bold text-primary mb-4 transition-colors duration-200;
+  }
+
+  .welcome-description {
+    @apply text-lg text-muted-foreground mb-8 transition-colors duration-200;
+  }
+
+  .topic-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-4;
+  }
+
+  .topic-button {
+    @apply btn btn-outline text-left p-6 h-auto transition-all duration-200 ease-in-out hover:scale-105;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(10px); }
+}
+
+@keyframes slideInFromLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+.slide-in-left {
+  animation: slideInFromLeft 0.5s ease-out forwards;
+}
+
+.slide-in-right {
+  animation: slideInFromRight 0.5s ease-out forwards;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Hover animations */
+.hover-grow {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-grow:hover {
+  transform: scale(1.05);
+}
+
+.hover-lift {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Accessibility */
+.sr-only {
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+}
+
+/* Scrollbar styling */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--background);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+  border-radius: 20px;
+  border: 2px solid var(--background);
+}
+
+/* Additional utility classes */
+.text-balance {
+  text-wrap: balance;
+}
+
+.backdrop-blur {
+  backdrop-filter: blur(8px);
+}
+
+.glass {
+  @apply bg-background/80 backdrop-blur;
+}
+
+/* Responsive typography */
+@media (min-width: 0px) {
+  .text-fluid-sm {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+  }
+  .text-fluid-base {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+  }
+  .text-fluid-lg {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+  }
+  .text-fluid-xl {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Dark theme gradient background */
+.dark body {
+  background: linear-gradient(to bottom right, hsl(222, 47%, 11%), hsl(217, 33%, 17%));
+}
+
+/* Additional animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.shimmer {
+  background: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* Transition utilities */
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-colors {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Additional hover effects */
+.hover-shadow:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.hover-rotate:hover {
+  transform: rotate(3deg);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.latex-content .katex-display {
+  display: inline-block;
+  margin: 0.5em 0;
+}
+
+.latex-content .katex {
+  font-size: 1.1em;
+}
+
+/* Enhanced card styles */
+.card {
+  @apply bg-card text-card-foreground rounded-lg shadow-md border border-border transition-all duration-300 ease-in-out;
+}
+
+.card:hover {
+  @apply shadow-lg;
+}
+
+.dark .card {
+  @apply border-border/50;
+}
+
+/* Enhanced button styles */
+.btn {
+  @apply shadow-sm hover:shadow transition-all duration-200 ease-in-out;
+}
+
+/* Enhanced input styles */
+.input, .textarea, .select {
+  @apply border-2 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 ease-in-out;
+}
+
+/* Enhanced tab styles */
+.tabs-list {
+  @apply bg-muted rounded-md p-1;
+}
+
+.tab {
+  @apply px-3 py-2 rounded-md transition-all duration-200 ease-in-out;
+}
+
+.tab[data-state="active"] {
+  @apply bg-background text-foreground shadow-sm;
+}
+
+/* Enhanced dialog styles */
+.dialog-content {
+  @apply bg-card border border-border shadow-lg rounded-lg;
+}
+
+.dark .dialog-content {
+  @apply border-border/50;
+}
+
+/* Dark mode specific styles */
+.dark .btn-outline {
+  @apply border-border hover:bg-accent hover:text-accent-foreground;
+}
+
+.dark .chat-input-field {
+  @apply bg-muted text-foreground placeholder-muted-foreground;
+}
+
+.dark .shimmer {
+  background: linear-gradient(to right, hsl(222, 47%, 11%) 0%, hsl(217, 33%, 17%) 20%, hsl(222, 47%, 11%) 40%, hsl(222, 47%, 11%) 100%);
+}
+
+/* Improved contrast for dark mode */
+.dark .text-muted-foreground {
+  @apply text-gray-400;
+}
+
+/* .dark .border {
+  @apply border-gray-700;
+} */
+
+/* Smooth transition for theme change */
+body, .btn, .card, .input, .textarea, .select, .tabs-list, .tab, .dialog-content {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
